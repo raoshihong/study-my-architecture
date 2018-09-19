@@ -63,7 +63,18 @@
 
             <!-- 添加整个公司自定义的公共依赖库 end -->
             <!-- 内部依赖 end-->
-
+            <!-- 数据库相关依赖 begin -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.3.2</version>
+            </dependency>
+            <!-- 数据库相关依赖 end -->
         </dependencies>
     </dependencyManagement>
 
@@ -81,6 +92,7 @@
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
+                        <!-- 设置UTF-8 以免编译有问题 -->
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                 </plugin>
@@ -104,7 +116,19 @@
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>2.8.2</version>
                 </plugin>
-
+                <!-- 生成mybatis代码插件 -->
+                <plugin>
+                    <groupId>org.mybatis.generator</groupId>
+                    <artifactId>mybatis-generator-maven-plugin</artifactId>
+                    <version>1.3.2</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>${mysql.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>

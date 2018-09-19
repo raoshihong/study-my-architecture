@@ -35,7 +35,16 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <!-- Spring Boot相关依赖 end -->
-
+        <!-- 数据库相关依赖 begin -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <!-- 数据库相关依赖 end -->
         <!-- 测试相关依赖 Begin -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -56,7 +65,10 @@
                     <skip>${maven.deploy.skip}</skip><!-- 设置是否跳过deploy -->
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 </project>
