@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.rao.study.scaffold</groupId>
+    <artifactId>study-scaffold</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>study-scaffold</name>
+    <url>http://maven.apache.org</url>
+
+    <!--
+    整个项目的父pom的作用
+    1.引入项目子module
+    2.指定maven私服地址,用来进行deploy
+    3.引入公共的父pom
+    4.定义公共的properties属性变量
+    5.引入公共的依赖包进行管理
+    6.引入公共的plugin插件
+    7.指定不同环境的或者不同操作的profiles (也可以定义在maven的settings.xml配置文件中)
+    -->
+
+    <!-- 引入子模块 -->
+    <modules><!-- 引入整个项目所有的子模块 -->
+        <module>study-scaffold-api</module>
+        <module>study-scaffold-core</module>
+        <module>study-scaffold-web</module>
+    </modules>
+
+    <!-- 引入公共父pom,也可以自定义父pom -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.4.RELEASE</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.springframework.version>4.3.9.RELEASE</org.springframework.version>
+        <org.springframework.boot>1.5.4.RELEASE</org.springframework.boot>
+
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <!-- 项目依赖管理 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- 内部依赖 begin -->
+            <dependency>
+                <groupId>com.rao.study.scaffold</groupId>
+                <artifactId>study-scaffold-api</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rao.study.scaffold</groupId>
+                <artifactId>study-scaffold-core</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <!-- 添加整个公司自定义的公共依赖库 begin -->
+
+            <!-- 添加整个公司自定义的公共依赖库 end -->
+            <!-- 内部依赖 end-->
+
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <!-- 指定功能 -->
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <pluginManagement>
+            <plugins>
+                <!-- 编译打包插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.7.0</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <!-- 打包源码包插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.0.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- 跳过deploy插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

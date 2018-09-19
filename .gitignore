@@ -1,0 +1,13 @@
+target/
+.classpath
+.project
+.settings/
+*.log
+*log*.zip
+.generatorignore
+/*/.gitignore
+/bin/
+.DS_Store
+.idea/
+*.iml
+*.tmp

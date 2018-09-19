@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.rao.study.scaffold</groupId>
+        <artifactId>study-scaffold</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>study-scaffold-core</artifactId>
+    <name>study-scaffold-core</name>
+    <packaging>jar</packaging>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip> <!-- 用于设置deploy跳过 -->
+    </properties>
+
+    <dependencies>
+        <!-- 内部依赖 begin -->
+        <dependency>
+            <groupId>com.rao.study.scaffold</groupId>
+            <artifactId>study-scaffold-api</artifactId>
+        </dependency>
+        <!-- 内部依赖 end -->
+
+        <!-- Spring Boot相关依赖 begin -->
+        <dependency>
+            <!--
+             自动引入spring-boot,spring-boot-autoconfigure,spring-boot-starter-loggin
+             -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!-- Spring Boot相关依赖 end -->
+
+        <!-- 测试相关依赖 Begin -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- 测试相关依赖 end -->
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- deploy发布插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>${maven.deploy.skip}</skip><!-- 设置是否跳过deploy -->
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
