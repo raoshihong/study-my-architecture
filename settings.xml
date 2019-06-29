@@ -143,7 +143,7 @@ under the License.
    | repository, to be used as an alternate download site. The mirror site will be the preferred 
    | server for that repository.
    |-->
-  <mirrors><!-- 指定镜像仓库,当找不到 -->
+  <mirrors><!-- 指定镜像仓库,从我们指定到私服中下载，如果没有则中maven重要仓库中下载 -->
     <!-- mirror
      | Specifies a repository mirror site to use instead of a given repository. The repository that
      | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
